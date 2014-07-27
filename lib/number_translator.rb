@@ -1,4 +1,4 @@
-def number_translator(number)
+def number_translator(input)
 	single_digits = { 0 => "zero", 1 => "one", 2 => "two", 3 => "three", 4 => "four", 
 									5 => "five", 6 => "six", 7 => "seven", 8 => "eight", 9 => "nine" }
 	teen_digits = { 11 => "eleven", 12 => "twelve", 13 => "thirteen", 14 => "fourteen", 
@@ -7,23 +7,28 @@ def number_translator(number)
 	tens_digits = { 1 => "ten", 2 => "twenty", 3 => "thirty", 4 => "forty", 5 => "fifty",
 								6 => "sixty", 7 => "seventy", 8 => "eighty", 9 => "ninety"}
 
+	number_split = []
 	words = []
 
-		if number < 10
-			if single_digits.has_key?(number)
-				words << single_digits[number]
+	input_array = input.to_s.split("")
+	input_array.each do |digit|
+		number_split << digit.to_i
+	end
+
+		if input < 10
+			if single_digits.has_key?(input)
+				words << single_digits[input]
 			end
-		elsif number > 10 && number < 20
-			if teen_digits.has_key?(number)
-				words << teen_digits[number]
+		elsif input > 10 && input < 20
+			if teen_digits.has_key?(input)
+				words << teen_digits[input]
 			end
-		elsif number > 19 && number < 100
-			ten,_,ones = number.partition("")
-			# if ones == 0
-			# 	words << single_digits[number]
-			# end
+		elsif input > 19 && input < 100
+			if tens_digits.has_key?(number_split[0]) && number_split[1] == 0
+				words << tens_digits[number_split[0]]
+			end
 		end
 	words.join("")
 end
 
-print number_translator(11)
+print number_translator(0)
