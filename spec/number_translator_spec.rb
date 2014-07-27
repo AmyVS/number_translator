@@ -14,8 +14,8 @@ describe('number_translator') do
 	it('takes an integer with "0" as the last digit and returns its respective word(s), sans "zero"') do
 		expect(number_translator(20)).to(eq('twenty'))
 	end
-	# it('takes an integer in between 20 and 99 and translates it into its respective words') do
-	# 	expect(number_translator(21)).to(eq('twenty one'))
-	# end
+	it('takes an integer in between 20 and 99 and translates it into its respective words') do
+		expect(number_translator(21)).to(eq('twenty one'))
+	end
 
 end
