@@ -35,4 +35,7 @@ describe('number_translator') do
 	it('takes an integer that has a "0" in the hundredths and tenths place and translates it into its respective words') do
 		expect(number_translator(1004)).to(eq('one thousand four'))
 	end
+	it('takes an integer that contains three "0"s in the hundreds section and translates it into its respective words') do
+		expect(number_translator(1000)).to(eq('one thousand'))
+	end
 end

@@ -36,7 +36,7 @@ def number_translator(input)
 		else
 			number = hundred.join.to_i 
 		end
-		
+
 		if number > 99 && number < 1000
 			if hundred[0] != 0 && hundred[1] == 0 && hundred[2] == 0
 				words << single_digits[hundred[0]] + " hundred"
@@ -58,9 +58,17 @@ def number_translator(input)
 		end
 		words.join(" ")
 	end
+
 	result = words.join(",")
 	result = result.sub(/[,]/, " thousand ")
+
+	# Remove "zero" from the end if input is greater than 0
+	if result.length > 4 && result.end_with?("zero")
+		result.chop!.chop!.chop!.chop!.chop!
+	else
+		print result.length
+	end
 	result
 end
 
-print number_translator(1004)
+print number_translator(1000)
