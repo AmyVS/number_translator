@@ -20,5 +20,8 @@ describe('number_translator') do
 	it('takes an integer in the hundreds and translates it into its respective words') do
 		expect(number_translator(123)).to(eq('one hundred twenty three'))
 	end
+	it('takes an integer in the hundreds with smaller digits in the teens and translates it into its respective words') do
+		expect(number_translator(113)).to(eq('one hundred thirteen'))
+	end
 
 end
