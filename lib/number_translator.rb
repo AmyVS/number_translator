@@ -68,11 +68,18 @@ def number_translator(input)
 		end
 		words.join(" ")
 
-		#### Include nth power words here ####
+		#### Include nth-power words here ####
 		result = words.join(",")
 		puts result
+			# Trillions
+		if result.include?(",") && ((input >= 10 ** 12) && (input < 10 ** 15))
+			nth = 4
+			until nth == 0 do
+				result = result.sub(/[,]/, nth_digits[nth])
+				nth -= 1
+			end
 			# Billions
-		if result.include?(",") && ((input >= 10 ** 9) && (input < 10 ** 12))
+		elsif result.include?(",") && ((input >= 10 ** 9) && (input < 10 ** 12))
 			nth = 3
 			until nth == 0 do
 				result = result.sub(/[,]/, nth_digits[nth])
@@ -88,6 +95,8 @@ def number_translator(input)
 			# Thousands
 		elsif result.include?(",") && ((input >= 10 ** 3) && (input < 10 ** 6))
 			result = result.sub!(/[,]/, nth_digits[1])
+		else
+			false
 		end
 	end
 
@@ -100,4 +109,4 @@ def number_translator(input)
 	result
 end
 
-print number_translator(1_000_000_000)
+print number_translator(1_000_000_000_000)
