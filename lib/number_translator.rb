@@ -25,7 +25,6 @@ def number_translator(input)
 
 	# For each hundred section in the number, analyse it and return the words for that section
 	big_number_final.each do |hundred|
-
 		# Remove "0"s in number, if they appear at the front of "hundred"
 		if hundred[0] == 0 && hundred[1] == 0
 			hundred = hundred.slice(2)
@@ -36,10 +35,14 @@ def number_translator(input)
 		else
 			number = hundred.join.to_i 
 		end
+		puts number
 
-		if number > 99 && number < 1000
+		# Hundred's analyser
+		if number > 99 
 			if hundred[0] != 0 && hundred[1] == 0 && hundred[2] == 0
 				words << single_digits[hundred[0]] + " hundred"
+			elsif hundred[0] != 0 && hundred[1] == 0 && hundred[2] !=0
+				words << single_digits[hundred[0]] + " hundred " + single_digits[hundred[2]] 
 			elsif hundred[1] == 0 || hundred[1] == 1 
 				words << single_digits[hundred[0]] + " hundred " + teen_digits[hundred[2]]
 			else
@@ -59,6 +62,7 @@ def number_translator(input)
 		words.join(" ")
 	end
 
+	# Include nth power words here
 	result = words.join(",")
 	result = result.sub(/[,]/, " thousand ")
 
@@ -71,4 +75,4 @@ def number_translator(input)
 	result
 end
 
-print number_translator(120000)
+print number_translator(102000)

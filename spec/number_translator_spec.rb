@@ -17,6 +17,9 @@ describe('number_translator') do
 	it('takes an integer in between 20 and 99 and translates it into its respective words') do
 		expect(number_translator(21)).to(eq('twenty one'))
 	end
+	it('takes an integer with a "0" in the tens place and returns the proper words') do
+		expect(number_translator(102)).to(eq('one hundred two'))
+	end
 	it('takes an integer in the hundreds and translates it into its respective words') do
 		expect(number_translator(123)).to(eq('one hundred twenty three'))
 	end
