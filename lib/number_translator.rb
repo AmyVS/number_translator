@@ -30,9 +30,9 @@ def number_translator(input)
 	end
 
 	nth = 0
-	# For each hundred section in the number, analyse it and return the words for that section
+	# For each "hundred" section in the number, analyse it and return the words for that section
 	big_number_final.each do |hundred|
-		# Remove "0"s in number, if they appear at the front of "hundred"
+		# Remove "0"s in number, if they appear at the front of "hundred" section
 		if hundred[0] == 0 && hundred[1] == 0
 			hundred = hundred.slice(2)
 			number = hundred.to_i
@@ -42,7 +42,7 @@ def number_translator(input)
 		else
 			number = hundred.join.to_i 
 		end
-		puts number
+		print big_number_final
 
 		# Hundred's analyser
 		if number > 99 
@@ -71,20 +71,27 @@ def number_translator(input)
 		#### Include nth power words here ####
 		result = words.join(",")
 		puts result
-			# Solve for millions
-		if result.include?(",") && ((input >= 10 ** 6) && (input < 10 ** 9))
+			# Billions
+		if result.include?(",") && ((input >= 10 ** 9) && (input < 10 ** 12))
+			nth = 3
+			until nth == 0 do
+				result = result.sub(/[,]/, nth_digits[nth])
+				nth -= 1
+			end
+			# Millions
+		elsif result.include?(",") && ((input >= 10 ** 6) && (input < 10 ** 9))
 			nth = 2
 			until nth == 0 do
-				result = result.sub!(/[,]/, nth_digits[nth])
-			nth -= 1
+				result = result.sub(/[,]/, nth_digits[nth])
+				nth -= 1
 			end
-			# Solve for thousands
+			# Thousands
 		elsif result.include?(",") && ((input >= 10 ** 3) && (input < 10 ** 6))
 			result = result.sub!(/[,]/, nth_digits[1])
 		end
 	end
 
-	# Remove "zero" from the end if input is greater than 0
+	# Remove unnecessary "zero"s from result, if input is greater than 0
 	if result.length > 4 && result.include?("zero")
 		result =* result.split(" ")
 		result.delete"zero"
@@ -93,4 +100,4 @@ def number_translator(input)
 	result
 end
 
-print number_translator(1_000)
+print number_translator(1_000_000_000)

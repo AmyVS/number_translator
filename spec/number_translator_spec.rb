@@ -44,7 +44,10 @@ describe('number_translator') do
 	it('takes an integer that might give a "zero" output and returns it sans "zero"') do
 		expect(number_translator(120000)).to(eq('one hundred twenty thousand'))
 	end
-	it('takes the integer 1,000,000 and translates it into its respective words') do
+	it('takes the integer in the millions and translates it into its respective words') do
 		expect(number_translator(1_001_001)).to(eq('one million one thousand one'))
+	end
+	it('takes the integer in the billions and translates it into its respective words') do
+		expect(number_translator(1_020_010_001)).to(eq('one billion twenty million ten thousand one'))
 	end
 end
