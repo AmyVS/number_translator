@@ -26,7 +26,7 @@ describe('number_translator') do
 	it('takes an integer in the hundreds with smaller digits in the teens and translates it into its respective words') do
 		expect(number_translator(113)).to(eq('one hundred thirteen'))
 	end
-	it('takes an integer in between 1,000 and 9,999 translates it into its respective words') do
+	it('takes an integer in between 1,000 and 999,999 translates it into its respective words') do
 		expect(number_translator(1234)).to(eq('one thousand two hundred thirty four'))
 	end
 	it('takes an integer that ends in "0"s and translates it into its respective words') do
@@ -43,5 +43,8 @@ describe('number_translator') do
 	end
 	it('takes an integer that might give a "zero" output and returns it sans "zero"') do
 		expect(number_translator(120000)).to(eq('one hundred twenty thousand'))
+	end
+	it('takes the integer 1,000,000 and translates it into its respective words') do
+		expect(number_translator(1_001_001)).to(eq('one million one thousand one'))
 	end
 end

@@ -1,14 +1,20 @@
 def number_translator(input)
 	single_digits = { 0 => "zero", 1 => "one", 2 => "two", 3 => "three", 4 => "four", 
 									5 => "five", 6 => "six", 7 => "seven", 8 => "eight", 9 => "nine" }
+
 	teen_digits = { 0 => "ten", 1 => "eleven", 2 => "twelve", 3 => "thirteen", 
 									4 => "fourteen", 5 => "fifteen", 6 => "sixteen", 7 => "seventeen", 
 									8 => "eighteen", 9 => "nineteen" }
+
 	tens_digits = { 2 => "twenty", 3 => "thirty", 4 => "forty", 5 => "fifty",
 									6 => "sixty", 7 => "seventy", 8 => "eighty", 9 => "ninety" }
 
+	nth_digits = 	{ 1 => " thousand ", 2 => " million ", 3 => " billion ", 
+									4 => " trillion " } 
+
 	# Final words are pushed here:
 	words = []
+	result = ""
 
  	# Breaking number up into hundreds
 	big_number_prep = input.to_s.each_char.map { |digit| digit.to_i }
@@ -23,6 +29,7 @@ def number_translator(input)
 		position += 1
 	end
 
+	nth = 0
 	# For each hundred section in the number, analyse it and return the words for that section
 	big_number_final.each do |hundred|
 		# Remove "0"s in number, if they appear at the front of "hundred"
@@ -60,11 +67,22 @@ def number_translator(input)
 			words << single_digits[number]
 		end
 		words.join(" ")
-	end
 
-	# Include nth power words here
-	result = words.join(",")
-	result = result.sub(/[,]/, " thousand ")
+		#### Include nth power words here ####
+		result = words.join(",")
+		puts result
+			# Solve for millions
+		if result.include?(",") && ((input >= 10 ** 6) && (input < 10 ** 9))
+			nth = 2
+			until nth == 0 do
+				result = result.sub!(/[,]/, nth_digits[nth])
+			nth -= 1
+			end
+			# Solve for thousands
+		elsif result.include?(",") && ((input >= 10 ** 3) && (input < 10 ** 6))
+			result = result.sub!(/[,]/, nth_digits[1])
+		end
+	end
 
 	# Remove "zero" from the end if input is greater than 0
 	if result.length > 4 && result.include?("zero")
@@ -75,4 +93,4 @@ def number_translator(input)
 	result
 end
 
-print number_translator(102000)
+print number_translator(1_000)
