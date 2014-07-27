@@ -26,4 +26,10 @@ describe('number_translator') do
 	it('takes an integer in between 1,000 and 9,999 translates it into its respective words') do
 		expect(number_translator(1234)).to(eq('one thousand two hundred thirty four'))
 	end
+	it('takes an integer that ends in "0"s and translates it into its respective words') do
+		expect(number_translator(100)).to(eq('one hundred'))
+	end
+	# it('takes an integer that has a "0" in the hundredths place and translates it into its respective words') do
+	# 	expect(number_translator(1034)).to(eq('one thousand thirty four'))
+	# end
 end
