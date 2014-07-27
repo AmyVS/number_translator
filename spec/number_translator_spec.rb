@@ -23,5 +23,7 @@ describe('number_translator') do
 	it('takes an integer in the hundreds with smaller digits in the teens and translates it into its respective words') do
 		expect(number_translator(113)).to(eq('one hundred thirteen'))
 	end
-
+	it('takes an integer greater than or equal to 1000 and translates it into its respective words') do
+		exptect(number_translator(1234)).to(eq('one thousand thirty four'))
+	end
 end
