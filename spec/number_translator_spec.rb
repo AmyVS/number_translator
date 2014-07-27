@@ -24,6 +24,6 @@ describe('number_translator') do
 		expect(number_translator(113)).to(eq('one hundred thirteen'))
 	end
 	it('takes an integer in between 1,000 and 9,999 translates it into its respective words') do
-		exptect(number_translator(1234)).to(eq('one thousand thirty four'))
+		expect(number_translator(1234)).to(eq('one thousand two hundred thirty four'))
 	end
 end

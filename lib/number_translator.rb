@@ -7,8 +7,7 @@ def number_translator(input)
 	tens_digits = { 2 => "twenty", 3 => "thirty", 4 => "forty", 5 => "fifty",
 									6 => "sixty", 7 => "seventy", 8 => "eighty", 9 => "ninety" }
 
-
-	# number_split = []
+	# Final words are pushed here:
 	words = []
 
  	# Breaking number up into hundreds
@@ -49,7 +48,8 @@ def number_translator(input)
 		words.join(" ")
 	end
 	result = words.join(",")
+	result = result.sub(/[,]/, " thousand ")
 	result
 end
 
-print number_translator(12)
+print number_translator(1234)
