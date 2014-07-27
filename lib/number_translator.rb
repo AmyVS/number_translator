@@ -27,11 +27,12 @@ def number_translator(input)
 			if tens_digits.has_key?(number_split[0]) && number_split[1] == 0
 				words << tens_digits[number_split[0]]
 			else
-				words << tens_digits[number_split[0]]
-				words << single_digits[number_split[1]]
+				words << tens_digits[number_split[0]] + " " + single_digits[number_split[1]]
 			end
+		else
+			words << single_digits[number_split[0]] + " hundred " + tens_digits[number_split[1]] + " " + single_digits[number_split[2]]
 		end
 	words.join(" ")
 end
 
-print number_translator(84)
+print number_translator(123)
