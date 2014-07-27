@@ -38,4 +38,7 @@ describe('number_translator') do
 	it('takes an integer that contains three "0"s in the hundreds section and translates it into its respective words') do
 		expect(number_translator(1000)).to(eq('one thousand'))
 	end
+	it('takes an integer that might give a "zero" output and returns it sans "zero"') do
+		expect(number_translator(120000)).to(eq('one hundred twenty thousand'))
+	end
 end

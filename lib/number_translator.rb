@@ -63,12 +63,12 @@ def number_translator(input)
 	result = result.sub(/[,]/, " thousand ")
 
 	# Remove "zero" from the end if input is greater than 0
-	if result.length > 4 && result.end_with?("zero")
-		result.chop!.chop!.chop!.chop!.chop!
-	else
-		print result.length
+	if result.length > 4 && result.include?("zero")
+		result =* result.split(" ")
+		result.delete"zero"
+		result = result.join(" ")
 	end
 	result
 end
 
-print number_translator(1000)
+print number_translator(120000)
