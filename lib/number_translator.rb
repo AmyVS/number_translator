@@ -33,7 +33,7 @@ def number_translator(input)
 
 	####### Removing unnecessary nth-power-ofs off the end of the array #######
 
-		# Tillions
+		# Trillions
 	if ((input >= 10 ** 12) && (input < 10 ** 15)) && ((big_number_final[1] == [0,0,0]) && (big_number_final[2] == [0,0,0]) && (big_number_final[3] == [0,0,0]) && (big_number_final[4] == [0,0,0]))
 		big_number_final.pop(3)
 		# Billions
