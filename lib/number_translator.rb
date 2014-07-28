@@ -31,7 +31,7 @@ def number_translator(input)
 		position += 1
 	end
 
-	####### Removing unnecessary nth-power ofs off the end of the array #######
+	####### Removing unnecessary nth-power-ofs off the end of the array #######
 
 		# Tillions
 	if ((input >= 10 ** 12) && (input < 10 ** 15)) && ((big_number_final[1] == [0,0,0]) && (big_number_final[2] == [0,0,0]) && (big_number_final[3] == [0,0,0]) && (big_number_final[4] == [0,0,0]))
@@ -86,7 +86,6 @@ def number_translator(input)
 
 		####### Include nth-power words here #######
 		result = words.join(",")
-		puts result
 			# Trillions
 		if result.include?(",") && ((input >= 10 ** 12) && (input < 10 ** 15))
 			nth = 4
