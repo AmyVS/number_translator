@@ -16,21 +16,22 @@ def number_translator(input)
 	words = []
 	result = ""
 
-	####### Processing input before it runs through the "hundred" analyser #######
+	####### Processing input before running it through the "hundred" analyser #######
+
  	# Breaking number up into hundreds
 	big_number_prep = input.to_s.each_char.map { |digit| digit.to_i }
 	big_number_prep2 = big_number_prep.reverse.each_slice(3).to_a.reverse
 
 	big_number_final = []
 
-	# Reversing number back into original order, while in an array
+	# Reversing number back into original order and pushing into final array for analysis
 	position = 0
 	while position < big_number_prep2.length do
 		big_number_final << big_number_prep2[position].reverse
 		position += 1
 	end
 
-	####### Removing unnecessary nth-power ofs off the end #######
+	####### Removing unnecessary nth-power ofs off the end of the array #######
 
 		# Tillions
 	if ((input >= 10 ** 12) && (input < 10 ** 15)) && ((big_number_final[1] == [0,0,0]) && (big_number_final[2] == [0,0,0]) && (big_number_final[3] == [0,0,0]) && (big_number_final[4] == [0,0,0]))
@@ -46,7 +47,6 @@ def number_translator(input)
 	end
 
 
-	nth = 0
 	# For each "hundred" section in the number, analyse it and return the words for that section
 	big_number_final.each do |hundred|
 		# Remove "0"s in number, if they appear at the front of "hundred" section
@@ -124,5 +124,3 @@ def number_translator(input)
 	end
 	result
 end
-
-print number_translator(1_000_000_000_000)
