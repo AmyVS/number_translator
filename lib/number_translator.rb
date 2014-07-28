@@ -16,6 +16,7 @@ def number_translator(input)
 	words = []
 	result = ""
 
+	####### Processing input before it runs through the "hundred" analyser #######
  	# Breaking number up into hundreds
 	big_number_prep = input.to_s.each_char.map { |digit| digit.to_i }
 	big_number_prep2 = big_number_prep.reverse.each_slice(3).to_a.reverse
@@ -28,6 +29,22 @@ def number_translator(input)
 		big_number_final << big_number_prep2[position].reverse
 		position += 1
 	end
+
+	####### Removing unnecessary nth-power ofs off the end #######
+
+		# Tillions
+	if ((input >= 10 ** 12) && (input < 10 ** 15)) && ((big_number_final[1] == [0,0,0]) && (big_number_final[2] == [0,0,0]) && (big_number_final[3] == [0,0,0]) && (big_number_final[4] == [0,0,0]))
+		big_number_final.pop(3)
+		# Billions
+	elsif ((input >= 10 ** 9) && (input < 10 ** 12)) && ((big_number_final[1] == [0,0,0]) && (big_number_final[2] == [0,0,0]) && (big_number_final[3] == [0,0,0]))
+		big_number_final.pop(2)
+		# Millions
+	elsif ((input >= 10 ** 6) && (input < 10 ** 9)) && ((big_number_final[1] == [0,0,0]) && (big_number_final[2] == [0,0,0]))
+		big_number_final.pop(1)
+	else
+		big_number_final
+	end
+
 
 	nth = 0
 	# For each "hundred" section in the number, analyse it and return the words for that section
@@ -42,9 +59,8 @@ def number_translator(input)
 		else
 			number = hundred.join.to_i 
 		end
-		print big_number_final
 
-		# Hundred's analyser
+		####### Hundred's analyser #######
 		if number > 99 
 			if hundred[0] != 0 && hundred[1] == 0 && hundred[2] == 0
 				words << single_digits[hundred[0]] + " hundred"
@@ -68,7 +84,7 @@ def number_translator(input)
 		end
 		words.join(" ")
 
-		#### Include nth-power words here ####
+		####### Include nth-power words here #######
 		result = words.join(",")
 		puts result
 			# Trillions
@@ -96,11 +112,11 @@ def number_translator(input)
 		elsif result.include?(",") && ((input >= 10 ** 3) && (input < 10 ** 6))
 			result = result.sub!(/[,]/, nth_digits[1])
 		else
-			false
+			nil
 		end
 	end
 
-	# Remove unnecessary "zero"s from result, if input is greater than 0
+	####### Remove unnecessary "zero"s from result, if input is greater than 0 #######
 	if result.length > 4 && result.include?("zero")
 		result =* result.split(" ")
 		result.delete"zero"

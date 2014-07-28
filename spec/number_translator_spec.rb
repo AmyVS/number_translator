@@ -53,4 +53,7 @@ describe('number_translator') do
 	it('takes the integer in the trillions and translates it into its respective words') do
 		expect(number_translator(1_020_010_001_123)).to(eq('one trillion twenty billion ten million one thousand one hundred twenty three'))
 	end
+	it('takes an even power of ten integer and translates it into its respective words') do
+		expect(number_translator(1_000_000_000_000)).to(eq('one trillion'))
+	end
 end
