@@ -1,6 +1,5 @@
-# Number Translator
-
 ![image](http://www.instantdisplay.co.uk/numberban.jpg)
+# Number Translator
 
 This is one of my first big Ruby projects. Here's what Number Translator does:
 
