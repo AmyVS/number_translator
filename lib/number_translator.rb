@@ -123,5 +123,3 @@ def number_translator(input)
 	end
 	result
 end
-
-print number_translator(999_000_100_000)
