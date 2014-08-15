@@ -1,7 +1,7 @@
 ![image](http://www.instantdisplay.co.uk/numberban.jpg)
 # Number Translator
 
-This is one of my first big Ruby projects. Here's what Number Translator does:
+This is one of my first big Ruby projects (after three days spent learning the language). Here's what Number Translator does:
 
 It takes (nearly) any given number, from 0 to 999 trillion, and translates it into its respective words. 
 For example, 245 will return "two hundred forty five". Shiny, eh? There's one little piece that needs work - 
